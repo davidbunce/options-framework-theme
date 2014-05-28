@@ -157,6 +157,18 @@ class Options_Framework_Interface {
 				$output .= '</select>';
 				break;
 
+			// Multiselect Box
+			case 'multiselect':
+				$output .= '<select class="of-input" name="' . esc_attr( $option_name . '[' . $value['id'] . '][]' ) . '" id="' . esc_attr( $value['id'] ) . '" multiple="multiple">';
+				foreach ($value['options'] as $key => $option ) {
+					$selected = '';
+					$selected = in_array($key, $val) ? ' selected="selected" ' : '';
+					// Let's reset this value each time so we don't select from the previous loop.
+					$output .= '<option'. $selected .' value="' . esc_attr( $key ) . '">' . esc_html( $option ) . '</option>';
+				}
+				$output .= '</select>';
+				break;
+
 
 			// Radio Box
 			case "radio":

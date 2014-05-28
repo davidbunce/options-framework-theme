@@ -29,6 +29,19 @@ add_filter( 'of_sanitize_textarea', 'of_sanitize_textarea' );
 
 add_filter( 'of_sanitize_select', 'of_sanitize_enum', 10, 2 );
 
+/* Multiselect */
+
+function of_sanitize_multiselect( $input, $option ) {
+	if ( is_array( $input ) ) {
+		foreach($input as $key => $value) {
+			$output[] = $value;
+		}
+	}
+	return $output;
+}
+
+add_filter( 'of_sanitize_multiselect', 'of_sanitize_multiselect', 10, 2 );
+
 /* Radio */
 
 add_filter( 'of_sanitize_radio', 'of_sanitize_enum', 10, 2 );
